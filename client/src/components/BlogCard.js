@@ -8,7 +8,7 @@ function BlogCard({ blog, selectedBlog }) {
 
   return (
     <li>
-      <NavLink to={`/blogs/${blog.id}`} onClick={handleClick}>
+      <NavLink to={`/blogs/${blog.id}`} exact onClick={handleClick}>
         <h1>{blog.title}</h1>
       </NavLink>
       <p>Posted by: {blog.user.username}</p>

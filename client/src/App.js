@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Login from "./pages/Login";
 import Blogs from "./components/Blogs";
@@ -9,6 +9,7 @@ import BlogPage from "./pages/BlogPage";
 function App() {
   const [blogs, setBlogs] = useState([]);
   const [selectedBlog, setSelectedBlog] = useState([]);
+
   console.log(selectedBlog);
 
   useEffect(() => {
