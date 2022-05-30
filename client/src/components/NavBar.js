@@ -8,16 +8,13 @@ function NavBar() {
     <Navbar>
       <Navbar.Brand>Sunil's BlogSpot</Navbar.Brand>
       <Container>
-        <NavLink to="/" exact style={{ color: "white" }}>
-          Login
+        <NavLink to="/" exact style={{ color: "black" }}>
+          Logout
         </NavLink>
-        <NavLink to="/blogs" exact style={{ color: "white" }}>
+        <NavLink to="/blogs" exact style={{ color: "black" }}>
           Blogs
         </NavLink>
-        <NavLink to="/users" exact style={{ color: "white" }}>
-          Users
-        </NavLink>
-        <NavLink to="/createpost" exact style={{ color: "white" }}>
+        <NavLink to="/createpost" exact style={{ color: "black" }}>
           Create Post
         </NavLink>
       </Container>
