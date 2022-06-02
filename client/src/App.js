@@ -5,25 +5,37 @@ import NavBar from "./components/NavBar";
 import Login from "./pages/Login";
 import Blogs from "./components/Blogs";
 import BlogPage from "./pages/BlogPage";
+import WelcomePage from "./pages/WelcomePage";
 
 function App() {
   const [blogs, setBlogs] = useState([]);
   const [selectedBlog, setSelectedBlog] = useState([]);
-
-  console.log(selectedBlog);
+  const [currentUser, setCurrentUser] = useState(null);
+  
 
   useEffect(() => {
     fetch("http://localhost:3000/blogs")
-      .then((r) => r.json())
+      .then((res) => res.json())
       .then((blogs) => setBlogs(blogs));
   }, []);
 
+  useEffect(() => {
+    // auto-login
+    fetch("/me").then((res) => {
+      if (res.ok) {
+        res.json().then((user) => setCurrentUser(user));
+      }
+    });
+  }, []);
+
+  if (!currentUser) return <Login setCurrentUser={setCurrentUser} />;
+
   return (
     <div className="App">
-      <NavBar />
+      <NavBar currentUser={currentUser} setCurrentUser={setCurrentUser} />
       <Switch>
-        <Route exact path="/">
-          <Login />
+        <Route exact path="/me">
+          <WelcomePage currentUser={currentUser} />
         </Route>
         <Route exact path="/blogs">
           <Blogs blogs={blogs} selectedBlog={setSelectedBlog} />

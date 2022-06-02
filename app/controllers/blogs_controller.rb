@@ -1,5 +1,6 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :update, :destroy]
+  skip_before_action :authorize
 
   # GET /blogs
   def index

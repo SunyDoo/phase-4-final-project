@@ -8,7 +8,7 @@ class Blog < ApplicationRecord
   #Validations
   validates_presence_of :title, :topic, :content
 
-  #Scope Methods
+  #Methods
   def uniq_commentors
     self.commented_users.uniq
   end

@@ -1,41 +1,42 @@
 class UsersController < ApplicationController
     before_action :set_user, only: [:show]
+    skip_before_action :authorize, only: [:show, :create]
     wrap_parameters format: []
+    rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
   # GET /user
   def index
-    @users = User.all
-
-    render json: @users
+    users = User.all
+    render json: users
   end
 
   # GET /users/1
   def show
-    render json: @user
+    current_user = User.find(session[:user_id])
+    render json: @current_user
   end
 
   # POST /users
   def create
-    @user = User.new(user_params)
-
-    if @user.save
-      render json: @user, status: :created, location: @user
-    else
-      render json: @user.errors, status: :unprocessable_entity
-    end
+    user = User.create!(user_params)
+    render json: user
   end
 
   
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_user
-      @user = User.find(params[:id])
+      user = User.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
+
     def user_params
-      params.require(:user).permit(:username, :password, :avatar)
+      params.permit(:username, :password, :avatar)
+    end
+
+    def render_unprocessable_entity
+      render json: {error: invalid.record.errors}, status: :unprocessable_entity
     end
 
 end

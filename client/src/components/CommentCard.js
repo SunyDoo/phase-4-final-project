@@ -10,12 +10,12 @@ function CommentCard({ comment }) {
 
         <button>
           <span role="img" aria-label="like">
-            👍
+            👍{comment.likes}
           </span>
         </button>
         <button>
           <span role="img" aria-label="dislike">
-            👎
+            👎{comment.dislikes}
           </span>
         </button>
       </li>
