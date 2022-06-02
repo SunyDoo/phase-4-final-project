@@ -11,7 +11,7 @@ function App() {
   const [blogs, setBlogs] = useState([]);
   const [selectedBlog, setSelectedBlog] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
-  
+  console.log(currentUser);
 
   useEffect(() => {
     fetch("http://localhost:3000/blogs")
@@ -21,7 +21,7 @@ function App() {
 
   useEffect(() => {
     // auto-login
-    fetch("/me").then((res) => {
+    fetch("/auth").then((res) => {
       if (res.ok) {
         res.json().then((user) => setCurrentUser(user));
       }
@@ -34,8 +34,11 @@ function App() {
     <div className="App">
       <NavBar currentUser={currentUser} setCurrentUser={setCurrentUser} />
       <Switch>
-        <Route exact path="/me">
-          <WelcomePage currentUser={currentUser} />
+        <Route exact path="/">
+          <WelcomePage
+            currentUser={currentUser}
+            setCurrentUser={setCurrentUser}
+          />
         </Route>
         <Route exact path="/blogs">
           <Blogs blogs={blogs} selectedBlog={setSelectedBlog} />

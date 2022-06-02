@@ -1,28 +1,25 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :update, :destroy]
   skip_before_action :authorize
+  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
+
+  # GET /user
 
   # GET /comments
   def index
-    @comments = Comment.all
-
-    render json: @comments
+    comments = Comment.all
+    render json: comments
   end
 
-  # GET /comments/1
-  def show
-    render json: @comment
-  end
+  # # GET /comments/1
+  # def show
+  #   render json: comment
+  # end
 
   # POST /comments
   def create
-    @comment = Comment.new(comment_params)
-
-    if @comment.save
-      render json: @comment, status: :created, location: @comment
-    else
-      render json: @comment.errors, status: :unprocessable_entity
-    end
+    comment = Comment.create!(comment_params)
+    render json: comment
   end
 
   # PATCH/PUT /comments/1
@@ -40,13 +37,17 @@ class CommentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_comment
       @comment = Comment.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def comment_params
       params.require(:comment).permit(:content, :user_id, :blog_id, :likes, :dislikes)
     end
+
+    def render_unprocessable_entity
+      render json: {error: invalid.record.errors}, status: :unprocessable_entity
+    end
+
 end

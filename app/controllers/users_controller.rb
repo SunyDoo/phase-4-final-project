@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-    before_action :set_user, only: [:show]
-    skip_before_action :authorize, only: [:show, :create]
     wrap_parameters format: []
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
@@ -13,7 +11,7 @@ class UsersController < ApplicationController
   # GET /users/1
   def show
     current_user = User.find(session[:user_id])
-    render json: @current_user
+    render json: current_user
   end
 
   # POST /users

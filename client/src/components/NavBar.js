@@ -3,26 +3,13 @@ import { NavLink } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import { Container } from "react-bootstrap";
 
-function NavBar({ currentUser, setCurrentUser }) {
-  function handleLogoutClick() {
-    fetch("/logout", { method: "DELETE" }).then((res) => {
-      if (res.ok) {
-        setCurrentUser(null);
-      }
-    });
-  }
-
+function NavBar() {
   return (
     <Navbar>
       <Navbar.Brand>Sunil's BlogSpot</Navbar.Brand>
       <Container>
-        <NavLink
-          to="/"
-          exact
-          style={{ color: "black" }}
-          onClick={handleLogoutClick}
-        >
-          Logout
+        <NavLink to="/" exact style={{ color: "black" }}>
+          Home Page
         </NavLink>
         <NavLink to="/blogs" exact style={{ color: "black" }}>
           Blogs

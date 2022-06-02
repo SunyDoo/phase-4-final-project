@@ -12,7 +12,6 @@ function LoginForm({ setCurrentUser }) {
       username,
       password,
     };
-    console.log(currentUser);
     fetch("/login", {
       method: "POST",
       headers: {
