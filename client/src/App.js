@@ -30,6 +30,23 @@ function App() {
 
   if (!currentUser) return <Login setCurrentUser={setCurrentUser} />;
 
+  function updateBlog(updatedBlog) {
+    const updatedBlogs = blogs.map((blog) => {
+      if (blog.id === updatedBlog.id) {
+        return updatedBlog;
+      } else {
+        return blog;
+      }
+    });
+    console.log(updatedBlog);
+    setBlogs(updatedBlogs);
+  }
+
+  function handleDelete(deletedBlog) {
+    const updatedBlogs = blogs.filter((blog) => blog.id !== deletedBlog.id);
+    setBlogs(updatedBlogs);
+  }
+
   return (
     <div className="App">
       <NavBar currentUser={currentUser} setCurrentUser={setCurrentUser} />
@@ -38,6 +55,8 @@ function App() {
           <WelcomePage
             currentUser={currentUser}
             setCurrentUser={setCurrentUser}
+            updateBlog={updateBlog}
+            handleDelete={handleDelete}
           />
         </Route>
         <Route exact path="/blogs">
