@@ -1,8 +1,6 @@
 import React from "react";
 
 function CommentCard({ comment, updateComment }) {
-  console.log(comment);
-
   function addLike(e) {
     e.preventDefault();
     fetch(`http://localhost:3000/comments/${comment.id}`, {
@@ -34,7 +32,7 @@ function CommentCard({ comment, updateComment }) {
   }
 
   return (
-    <ul>
+    <ul style={{ listStyleType: "none" }}>
       <li>
         <p>
           {comment.content} - {comment.user.username}

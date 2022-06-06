@@ -28,7 +28,7 @@ function WelcomePage({
       <button onClick={handleLogoutClick}>Log Out</button>
       <br></br>
       <h3>Your Content</h3>
-      <ul>
+      <ul style={{ listStyleType: "none" }}>
         {currentUser.blogs.map((blog) => (
           <>
             <li key={blog.id}>{blog.title}</li>

@@ -5,7 +5,7 @@ function Blogs({ blogs, selectedBlog, addViewCount }) {
   return (
     <>
       <div>
-        <ul>
+        <ul style={{ listStyleType: "none" }}>
           {blogs.map((blog) => (
             <BlogCard
               key={blog.id}
