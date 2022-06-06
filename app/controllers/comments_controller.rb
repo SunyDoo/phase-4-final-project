@@ -11,10 +11,10 @@ class CommentsController < ApplicationController
     render json: comments
   end
 
-  # # GET /comments/1
-  # def show
-  #   render json: comment
-  # end
+  # GET /comments/1
+  def show
+    render json: @comment
+  end
 
   # POST /comments
   def create

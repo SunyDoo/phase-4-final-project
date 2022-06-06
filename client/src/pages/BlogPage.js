@@ -15,6 +15,17 @@ function BlogPage({ blog, currentUser }) {
     setComments((comments) => [...comments, newComment]);
   }
 
+  function handleUpdateComment(updatedComment) {
+    const updatedComments = comments.map((comment) => {
+      if (comment.id === updatedComment.id) {
+        return updatedComment;
+      } else {
+        return comment;
+      }
+    });
+    setComments(updatedComments);
+  }
+
   return (
     <div>
       <h1>{blog.title}</h1>
@@ -24,7 +35,9 @@ function BlogPage({ blog, currentUser }) {
       <br></br>
       <span>
         <h5 style={{ display: "inline-block" }}>Comments</h5>
-        <button onClick={handleClick}>Leave a Comment</button>
+        {!commentForm ? (
+          <button onClick={handleClick}>Leave a Comment</button>
+        ) : null}
       </span>
       {commentForm ? (
         <CommentForm
@@ -34,7 +47,11 @@ function BlogPage({ blog, currentUser }) {
         />
       ) : null}
       {comments.map((comment) => (
-        <CommentCard key={comment.id} comment={comment} />
+        <CommentCard
+          key={comment.id}
+          comment={comment}
+          updateComment={handleUpdateComment}
+        />
       ))}
       <NavLink to={"/blogs"}>
         <p>Return to Blogs</p>

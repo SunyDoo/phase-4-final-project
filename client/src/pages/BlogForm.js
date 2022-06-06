@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function BlogForm({ blog, currentUser, onAddBlog }) {
+function BlogForm({ currentUser, onAddBlog }) {
   const [title, setTitle] = useState("");
   const [topic, setTopic] = useState("");
   const [content, setContent] = useState("");
@@ -8,8 +8,9 @@ function BlogForm({ blog, currentUser, onAddBlog }) {
   function handleSubmit(e) {
     e.preventDefault();
     const blogData = {
+      title: title,
+      topic: topic,
       content: content,
-      blog_id: blog.id,
       user_id: currentUser.id,
       views: 0,
     };

@@ -1,14 +1,18 @@
 import React from "react";
 import BlogCard from "./BlogCard";
 
-
-function Blogs({ blogs, selectedBlog }) {
+function Blogs({ blogs, selectedBlog, addViewCount }) {
   return (
     <>
       <div>
         <ul>
           {blogs.map((blog) => (
-            <BlogCard key={blog.id} blog={blog} selectedBlog={selectedBlog} />
+            <BlogCard
+              key={blog.id}
+              blog={blog}
+              selectedBlog={selectedBlog}
+              addViewCount={addViewCount}
+            />
           ))}
         </ul>
       </div>
