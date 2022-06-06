@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import CommentCard from "../components/CommentCard";
+import CommentForm from "../components/CommentForm";
 
-function BlogPage({ blog }) {
-  // const [commentForm, setCommentForm] = useState(false)
+function BlogPage({ blog, currentUser }) {
+  const [commentForm, setCommentForm] = useState(false);
+  const [comments, setComments] = useState(blog.comments);
 
-  //   function handleClick() {
-  //     setCommentForm((commentForm) => !commentForm);
-  //   }
+  function handleClick() {
+    setCommentForm((commentForm) => !commentForm);
+  }
+
+  function handleAddComment(newComment) {
+    setComments((comments) => [...comments, newComment]);
+  }
 
   return (
     <div>
@@ -18,9 +24,16 @@ function BlogPage({ blog }) {
       <br></br>
       <span>
         <h5 style={{ display: "inline-block" }}>Comments</h5>
-        <button>Leave a Comment</button>
+        <button onClick={handleClick}>Leave a Comment</button>
       </span>
-      {blog.comments.map((comment) => (
+      {commentForm ? (
+        <CommentForm
+          blog={blog}
+          currentUser={currentUser}
+          onAddComment={handleAddComment}
+        />
+      ) : null}
+      {comments.map((comment) => (
         <CommentCard key={comment.id} comment={comment} />
       ))}
       <NavLink to={"/blogs"}>

@@ -34,7 +34,7 @@ function WelcomePage({
             <li key={blog.id}>{blog.title}</li>
             {editBlog ? (
               <EditBlog
-                key={parseInt(blog.id) + 1}
+                key={blog.title}
                 blog={blog}
                 currentUser={currentUser}
                 onUpdateBlog={handleUpdateBlog}

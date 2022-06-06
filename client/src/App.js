@@ -38,7 +38,6 @@ function App() {
         return blog;
       }
     });
-    console.log(updatedBlog);
     setBlogs(updatedBlogs);
   }
 
@@ -63,7 +62,7 @@ function App() {
           <Blogs blogs={blogs} selectedBlog={setSelectedBlog} />
         </Route>
         <Route exact path={`/blogs/${selectedBlog.id}`}>
-          <BlogPage blog={selectedBlog} />
+          <BlogPage blog={selectedBlog} currentUser={currentUser} />
         </Route>
       </Switch>
     </div>
