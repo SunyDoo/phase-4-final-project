@@ -31,10 +31,9 @@ function WelcomePage({
       <ul style={{ listStyleType: "none" }}>
         {currentUser.blogs.map((blog) => (
           <>
-            <li key={blog.id}>{blog.title}</li>
+            <h4 key={blog.id}>{blog.title}</h4>
             {editBlog ? (
               <EditBlog
-                key={blog.title}
                 blog={blog}
                 currentUser={currentUser}
                 onUpdateBlog={handleUpdateBlog}

@@ -7,6 +7,7 @@ import Blogs from "./components/Blogs";
 import BlogPage from "./pages/BlogPage";
 import WelcomePage from "./pages/WelcomePage";
 import BlogForm from "./pages/BlogForm";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const [blogs, setBlogs] = useState([]);

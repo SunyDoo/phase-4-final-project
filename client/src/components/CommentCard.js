@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "react-bootstrap/Button";
 
 function CommentCard({ comment, updateComment }) {
   function addLike(e) {
@@ -38,16 +39,16 @@ function CommentCard({ comment, updateComment }) {
           {comment.content} - {comment.user.username}
         </p>
 
-        <button onClick={addLike}>
+        <Button variant="outline-success" onClick={addLike}>
           <span role="img" aria-label="like">
             👍{comment.likes}
           </span>
-        </button>
-        <button onClick={addDislike}>
+        </Button>
+        <Button variant="outline-danger" onClick={addDislike}>
           <span role="img" aria-label="dislike">
             👎{comment.dislikes}
           </span>
-        </button>
+        </Button>
       </li>
     </ul>
   );

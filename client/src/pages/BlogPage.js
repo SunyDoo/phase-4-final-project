@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import CommentCard from "../components/CommentCard";
 import CommentForm from "../components/CommentForm";
+import Button from "react-bootstrap/Button";
 
 function BlogPage({ blog, currentUser }) {
   const [commentForm, setCommentForm] = useState(false);
@@ -36,7 +37,7 @@ function BlogPage({ blog, currentUser }) {
       <span>
         <h5 style={{ display: "inline-block" }}>Comments</h5>
         {!commentForm ? (
-          <button onClick={handleClick}>Leave a Comment</button>
+          <Button onClick={handleClick}>Leave a Comment</Button>
         ) : null}
       </span>
       {commentForm ? (

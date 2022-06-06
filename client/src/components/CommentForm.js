@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
 
 function CommentForm({ blog, currentUser, onAddComment }) {
   const [content, setContent] = useState("");
@@ -36,7 +37,7 @@ function CommentForm({ blog, currentUser, onAddComment }) {
               onChange={(e) => setContent(e.target.value)}
             />
           </label>
-          <button type="submit">Leave Comment</button>
+          <Button type="submit">Leave Comment</Button>
         </form>
       </div>
     </>
