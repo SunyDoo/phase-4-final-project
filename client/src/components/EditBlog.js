@@ -46,9 +46,11 @@ function EditBlog({ blog, onUpdateBlog, currentUser, handleDelete }) {
           value={topic}
           onChange={(e) => setTopic(e.target.value)}
         />
-        <input
-          type="textarea"
+        <br></br>
+        <textarea
           name="content"
+          rows="10"
+          cols="100"
           autoComplete="off"
           value={content}
           onChange={(e) => setContent(e.target.value)}

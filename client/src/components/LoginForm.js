@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 function LoginForm({ setCurrentUser }) {
   const [username, setUsername] = useState("");
@@ -31,21 +32,25 @@ function LoginForm({ setCurrentUser }) {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <Form.Label>Username</Form.Label>
-        <input
-          type="text"
-          id="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <Form.Label htmlFor="password">Password</Form.Label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Log In</button>
+        <Form.Group className="mb-3">
+          <Form.Label>Username</Form.Label>
+          <input
+            type="text"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label htmlFor="password">Password</Form.Label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </Form.Group>
+        <Button type="submit">Log In</Button>
       </Form>
       {errors ? errors.map((err) => <p key={err}>{err}</p>) : null}
     </>

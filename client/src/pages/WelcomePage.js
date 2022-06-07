@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import EditBlog from "../components/EditBlog";
+import Container from "react-bootstrap/Container";
+import Card from "react-bootstrap/Card";
+import CardGroup from "react-bootstrap/CardGroup";
+import Button from "react-bootstrap/Button";
 
 function WelcomePage({
   currentUser,
@@ -28,24 +32,36 @@ function WelcomePage({
       <button onClick={handleLogoutClick}>Log Out</button>
       <br></br>
       <h3>Your Content</h3>
-      <ul style={{ listStyleType: "none" }}>
-        {currentUser.blogs.map((blog) => (
-          <>
-            <h4 key={blog.id}>{blog.title}</h4>
-            {editBlog ? (
-              <EditBlog
-                blog={blog}
-                currentUser={currentUser}
-                onUpdateBlog={handleUpdateBlog}
-                handleDelete={handleDelete}
-              />
-            ) : null}
-            <button onClick={() => setEditBlog((editBlog) => !editBlog)}>
-              Edit Blog
-            </button>
-          </>
-        ))}
-      </ul>
+      <Container>
+        <CardGroup>
+          {currentUser.blogs.map((blog) => (
+            <div key={blog.id}>
+              <Card style={{ height: "5rem" }} bg="light" border="dark">
+                <Card.Body>
+                  <Card.Title>{blog.title}</Card.Title>
+                </Card.Body>
+              </Card>
+              <Card.Footer>
+                <small className="text-muted">Total Views: {blog.views}</small>
+              </Card.Footer>
+              {editBlog ? (
+                <EditBlog
+                  blog={blog}
+                  currentUser={currentUser}
+                  onUpdateBlog={handleUpdateBlog}
+                  handleDelete={handleDelete}
+                />
+              ) : null}
+              <Button
+                onClick={() => setEditBlog((editBlog) => !editBlog)}
+                size="sm"
+              >
+                Edit Blog
+              </Button>
+            </div>
+          ))}
+        </CardGroup>
+      </Container>
     </div>
   );
 }

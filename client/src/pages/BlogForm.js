@@ -24,12 +24,13 @@ function BlogForm({ currentUser, onAddBlog }) {
     })
       .then((r) => r.json())
       .then((blogData) => onAddBlog(blogData));
+    document.getElementById("form").reset();
   }
 
   return (
     <>
       <div>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} id={"form"}>
           <Form.Group className="mb-3">
             <Form.Label>
               Title:

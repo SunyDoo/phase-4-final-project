@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 function SignUpForm({ setCurrentUser }) {
   const [username, setUsername] = useState("");
@@ -53,7 +54,7 @@ function SignUpForm({ setCurrentUser }) {
           value={avatar}
           onChange={(e) => setAvatar(e.target.value)}
         />
-        <button type="submit">Sign Up</button>
+        <Button type="submit">Sign Up</Button>
       </Form>
       {errors ? errors.map((err) => <p key={err}>{err}</p>) : null}
     </>
