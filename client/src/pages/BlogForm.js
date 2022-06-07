@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Form from "react-bootstrap/Form";
 
 function BlogForm({ currentUser, onAddBlog }) {
   const [title, setTitle] = useState("");
@@ -28,36 +29,45 @@ function BlogForm({ currentUser, onAddBlog }) {
   return (
     <>
       <div>
-        <form onSubmit={handleSubmit}>
-          <label>
-            Title:
-            <input
-              type="text"
-              name="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </label>
-          <label>
-            Topic:
-            <input
-              type="text"
-              name="topic"
-              value={topic}
-              onChange={(e) => setTopic(e.target.value)}
-            />
-          </label>
-          <label>
-            Content:
-            <input
-              type="text"
-              name="content"
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-            />
-          </label>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className="mb-3">
+            <Form.Label>
+              Title:
+              <Form.Control
+                type="text"
+                name="title"
+                size="40"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </Form.Label>
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>
+              Topic:
+              <Form.Control
+                type="text"
+                name="topic"
+                size="40"
+                value={topic}
+                onChange={(e) => setTopic(e.target.value)}
+              />
+            </Form.Label>
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>
+              Content:
+              <textarea
+                name="content"
+                rows="20"
+                cols="100"
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+              />
+            </Form.Label>
+          </Form.Group>
           <button type="submit">Make Post</button>
-        </form>
+        </Form>
       </div>
     </>
   );

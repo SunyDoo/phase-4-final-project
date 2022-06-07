@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Form from "react-bootstrap/Form";
 
 function SignUpForm({ setCurrentUser }) {
   const [username, setUsername] = useState("");
@@ -30,22 +31,22 @@ function SignUpForm({ setCurrentUser }) {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label>Username</label>
+      <Form onSubmit={handleSubmit}>
+        <Form.Label>Username</Form.Label>
         <input
           type="text"
           id="username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-        <label>Password</label>
+        <Form.Label>Password</Form.Label>
         <input
           type="password"
           id="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <label>Avatar</label>
+        <Form.Label>Avatar</Form.Label>
         <input
           type="text"
           id="avatar"
@@ -53,7 +54,7 @@ function SignUpForm({ setCurrentUser }) {
           onChange={(e) => setAvatar(e.target.value)}
         />
         <button type="submit">Sign Up</button>
-      </form>
+      </Form>
       {errors ? errors.map((err) => <p key={err}>{err}</p>) : null}
     </>
   );

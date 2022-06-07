@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Form from "react-bootstrap/Form";
 
 function LoginForm({ setCurrentUser }) {
   const [username, setUsername] = useState("");
@@ -29,15 +30,15 @@ function LoginForm({ setCurrentUser }) {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label>Username</label>
+      <Form onSubmit={handleSubmit}>
+        <Form.Label>Username</Form.Label>
         <input
           type="text"
           id="username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-        <label htmlFor="password">Password</label>
+        <Form.Label htmlFor="password">Password</Form.Label>
         <input
           type="password"
           id="password"
@@ -45,7 +46,7 @@ function LoginForm({ setCurrentUser }) {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit">Log In</button>
-      </form>
+      </Form>
       {errors ? errors.map((err) => <p key={err}>{err}</p>) : null}
     </>
   );
