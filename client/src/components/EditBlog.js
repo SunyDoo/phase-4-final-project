@@ -63,11 +63,11 @@ function EditBlog({ blog, onUpdateBlog, currentUser, handleDelete }) {
             onChange={(e) => setContent(e.target.value)}
           />
         </Form.Group>
-        <Button type="submit" value="Save" variant="success">
+        <Button type="submit" value="Save" variant="outline-success">
           Save
         </Button>
       </Form>
-      <Button variant="danger" size="sm" onClick={handleDeleteClick}>
+      <Button variant="outline-danger" size="sm" onClick={handleDeleteClick}>
         Delete Blog
       </Button>
     </>

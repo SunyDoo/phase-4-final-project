@@ -18,6 +18,14 @@ function WelcomePage({ currentUser, setCurrentUser, updateBlog }) {
   }
 
   function handleUpdateBlog(updatedBlog) {
+    const updatedBlogs = content.map((blog) => {
+      if (blog.id === updatedBlog.id) {
+        return updatedBlog;
+      } else {
+        return blog;
+      }
+    });
+    setContent(updatedBlogs);
     setEditBlog(false);
     updateBlog(updatedBlog);
   }

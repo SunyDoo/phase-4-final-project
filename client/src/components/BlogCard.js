@@ -15,7 +15,7 @@ function BlogCard({ blog, selectedBlog, addViewCount }) {
           <Card.Title>{blog.title}</Card.Title>
         </NavLink>
         <p>Posted by: {blog.user.username}</p>
-        <p>Views: {blog.views}</p>
+        <small className="text-muted">Views: {blog.views}</small>
       </Card>
     </Container>
   );

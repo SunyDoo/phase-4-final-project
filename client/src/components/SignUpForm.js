@@ -33,27 +33,39 @@ function SignUpForm({ setCurrentUser }) {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <Form.Label>Username</Form.Label>
-        <input
-          type="text"
-          id="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <Form.Label>Password</Form.Label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <Form.Label>Avatar</Form.Label>
-        <input
-          type="text"
-          id="avatar"
-          value={avatar}
-          onChange={(e) => setAvatar(e.target.value)}
-        />
+        <Form.Group className="mb-3">
+          <Form.Label>
+            Username
+            <Form.Control
+              type="text"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </Form.Label>
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>
+            Password
+            <Form.Control
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Label>
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>
+            Avatar
+            <Form.Control
+              type="text"
+              id="avatar"
+              value={avatar}
+              onChange={(e) => setAvatar(e.target.value)}
+            />
+          </Form.Label>
+        </Form.Group>
         <Button type="submit">Sign Up</Button>
       </Form>
       {errors ? errors.map((err) => <p key={err}>{err}</p>) : null}
