@@ -5,13 +5,9 @@ import Card from "react-bootstrap/Card";
 import CardGroup from "react-bootstrap/CardGroup";
 import Button from "react-bootstrap/Button";
 
-function WelcomePage({
-  currentUser,
-  setCurrentUser,
-  updateBlog,
-  handleDelete,
-}) {
+function WelcomePage({ currentUser, setCurrentUser, updateBlog }) {
   const [editBlog, setEditBlog] = useState(false);
+  const [content, setContent] = useState(currentUser.blogs);
 
   function handleLogoutClick() {
     fetch("/logout", { method: "DELETE" }).then((res) => {
@@ -26,19 +22,42 @@ function WelcomePage({
     updateBlog(updatedBlog);
   }
 
+  function handleDelete(deletedBlog) {
+    const updatedBlogs = content.filter((blog) => blog.id !== deletedBlog.id);
+    setContent(updatedBlogs);
+  }
+
   return (
     <div>
-      <h1>Welcome {currentUser.username}</h1>
-      <button onClick={handleLogoutClick}>Log Out</button>
-      <br></br>
-      <h3>Your Content</h3>
+      <div>
+        <h1>Welcome {currentUser.username}</h1>
+        <Button variant="outline-secondary" onClick={handleLogoutClick}>
+          Log Out
+        </Button>
+        <br></br>
+        <h3>Your Content</h3>
+        <Button onClick={() => setEditBlog((editBlog) => !editBlog)} size="sm">
+          {!editBlog ? "Edit Content" : "Close Edit Page"}
+        </Button>
+      </div>
       <Container>
-        <CardGroup>
-          {currentUser.blogs.map((blog) => (
+        <CardGroup
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(2, 1fr)",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "50vh",
+          }}
+        >
+          {content.map((blog) => (
             <div key={blog.id}>
               <Card style={{ height: "5rem" }} bg="light" border="dark">
                 <Card.Body>
                   <Card.Title>{blog.title}</Card.Title>
+                  <Card.Subtitle className="mb-2 text-muted">
+                    {blog.topic}
+                  </Card.Subtitle>
                 </Card.Body>
               </Card>
               <Card.Footer>
@@ -52,12 +71,6 @@ function WelcomePage({
                   handleDelete={handleDelete}
                 />
               ) : null}
-              <Button
-                onClick={() => setEditBlog((editBlog) => !editBlog)}
-                size="sm"
-              >
-                Edit Blog
-              </Button>
             </div>
           ))}
         </CardGroup>

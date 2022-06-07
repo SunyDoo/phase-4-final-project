@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 function BlogForm({ currentUser, onAddBlog }) {
   const [title, setTitle] = useState("");
@@ -8,6 +9,7 @@ function BlogForm({ currentUser, onAddBlog }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    e.target.reset();
     const blogData = {
       title: title,
       topic: topic,
@@ -24,13 +26,15 @@ function BlogForm({ currentUser, onAddBlog }) {
     })
       .then((r) => r.json())
       .then((blogData) => onAddBlog(blogData));
-    document.getElementById("form").reset();
+    setTitle("");
+    setTopic("");
+    setContent("");
   }
 
   return (
     <>
       <div>
-        <Form onSubmit={handleSubmit} id={"form"}>
+        <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
             <Form.Label>
               Title:
@@ -67,7 +71,7 @@ function BlogForm({ currentUser, onAddBlog }) {
               />
             </Form.Label>
           </Form.Group>
-          <button type="submit">Make Post</button>
+          <Button type="submit">Make Post</Button>
         </Form>
       </div>
     </>

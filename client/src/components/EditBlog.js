@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 function EditBlog({ blog, onUpdateBlog, currentUser, handleDelete }) {
   const [title, setTitle] = useState(blog.title);
@@ -31,33 +33,43 @@ function EditBlog({ blog, onUpdateBlog, currentUser, handleDelete }) {
 
   return (
     <>
-      <form className="edit-title" onSubmit={handleFormSubmit}>
-        <input
-          type="text"
-          name="title"
-          autoComplete="off"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <input
-          type="text"
-          name="topic"
-          autoComplete="off"
-          value={topic}
-          onChange={(e) => setTopic(e.target.value)}
-        />
+      <Form className="edit-title" onSubmit={handleFormSubmit}>
+        <Form.Group className="mb-3">
+          <input
+            type="text"
+            name="title"
+            autoComplete="off"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <input
+            type="text"
+            name="topic"
+            autoComplete="off"
+            value={topic}
+            onChange={(e) => setTopic(e.target.value)}
+          />
+        </Form.Group>
         <br></br>
-        <textarea
-          name="content"
-          rows="10"
-          cols="100"
-          autoComplete="off"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        />
-        <input type="submit" value="Save" />
-      </form>
-      <button onClick={handleDeleteClick}>Delete Blog</button>
+        <Form.Group className="mb-3">
+          <textarea
+            name="content"
+            rows="10"
+            cols="100"
+            autoComplete="off"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+          />
+        </Form.Group>
+        <Button type="submit" value="Save" variant="success">
+          Save
+        </Button>
+      </Form>
+      <Button variant="danger" size="sm" onClick={handleDeleteClick}>
+        Delete Blog
+      </Button>
     </>
   );
 }

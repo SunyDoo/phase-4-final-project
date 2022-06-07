@@ -22,6 +22,7 @@ function CommentForm({ blog, currentUser, onAddComment }) {
     })
       .then((r) => r.json())
       .then((newComment) => onAddComment(newComment));
+    setContent("");
   }
 
   return (

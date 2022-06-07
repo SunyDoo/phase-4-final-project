@@ -7,7 +7,13 @@ function Login({ setCurrentUser }) {
   const [showLogin, setShowLogin] = useState(true);
 
   return (
-    <div>
+    <div
+      style={{
+        alignItems: "center",
+        justifyContent: "center",
+        height: "50vh",
+      }}
+    >
       {showLogin ? (
         <>
           <LoginForm setCurrentUser={setCurrentUser} />
