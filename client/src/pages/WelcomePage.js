@@ -6,7 +6,7 @@ import CardGroup from "react-bootstrap/CardGroup";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
 
-function WelcomePage({ currentUser, setCurrentUser, updateBlog }) {
+function WelcomePage({ currentUser, setCurrentUser, updateBlog, deleteBlog }) {
   const [editBlog, setEditBlog] = useState(false);
   const [content, setContent] = useState(currentUser.blogs);
 
@@ -34,6 +34,7 @@ function WelcomePage({ currentUser, setCurrentUser, updateBlog }) {
   function handleDelete(deletedBlog) {
     const updatedBlogs = content.filter((blog) => blog.id !== deletedBlog.id);
     setContent(updatedBlogs);
+    deleteBlog(deletedBlog);
   }
 
   return (

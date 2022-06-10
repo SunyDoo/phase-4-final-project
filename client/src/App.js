@@ -13,7 +13,7 @@ function App() {
   const [blogs, setBlogs] = useState([]);
   const [selectedBlog, setSelectedBlog] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
-  console.log(currentUser);
+  // console.log(currentUser);
 
   useEffect(() => {
     fetch("http://localhost:3000/blogs")
@@ -43,10 +43,10 @@ function App() {
     setBlogs(updatedBlogs);
   }
 
-  // function handleDelete(deletedBlog) {
-  //   const updatedBlogs = blogs.filter((blog) => blog.id !== deletedBlog.id);
-  //   setBlogs(updatedBlogs);
-  // }
+  function handleDelete(deletedBlog) {
+    const updatedBlogs = blogs.filter((blog) => blog.id !== deletedBlog.id);
+    setBlogs(updatedBlogs);
+  }
 
   function handleAddBlog(newBlog) {
     setBlogs((blogs) => [...blogs, newBlog]);
@@ -86,7 +86,7 @@ function App() {
             currentUser={currentUser}
             setCurrentUser={setCurrentUser}
             updateBlog={updateBlog}
-            // handleDelete={handleDelete}
+            deleteBlog={handleDelete}
           />
         </Route>
         <Route exact path="/blogs">
