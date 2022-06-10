@@ -4,6 +4,7 @@ import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import CardGroup from "react-bootstrap/CardGroup";
 import Button from "react-bootstrap/Button";
+import Image from "react-bootstrap/Image";
 
 function WelcomePage({ currentUser, setCurrentUser, updateBlog }) {
   const [editBlog, setEditBlog] = useState(false);
@@ -38,7 +39,17 @@ function WelcomePage({ currentUser, setCurrentUser, updateBlog }) {
   return (
     <div>
       <div>
-        <h1>Welcome {currentUser.username}</h1>
+        <div>
+          <h1>Welcome {currentUser.username}</h1>
+          <Image
+            src={currentUser.avatar}
+            width="75"
+            height="75"
+            className="d-inline-block align-top"
+            alt="Sunil's Gym Logo"
+            roundedCircle
+          />
+        </div>
         <Button variant="outline-secondary" onClick={handleLogoutClick}>
           Log Out
         </Button>
