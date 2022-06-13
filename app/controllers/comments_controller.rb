@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   skip_before_action :authorize
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
-  # GET /user
+ 
 
   # GET /comments
   def index
@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
   # POST /comments
   def create
     comment = Comment.create!(comment_params)
-    render json: comment
+    render json: comment, status: :created
   end
 
   # PATCH/PUT /comments/1
