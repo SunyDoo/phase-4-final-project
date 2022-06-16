@@ -12,8 +12,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   const [blogs, setBlogs] = useState([]);
   const [selectedBlog, setSelectedBlog] = useState([]);
-  const [currentUser, setCurrentUser] = useState(null);
-  // console.log(currentUser);
+  const [currentUser, setCurrentUser] = useState("");
+  console.log(currentUser);
 
   useEffect(() => {
     fetch("http://localhost:3000/blogs")

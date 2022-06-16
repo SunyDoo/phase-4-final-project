@@ -47,18 +47,20 @@ function BlogForm({ currentUser, onAddBlog }) {
               />
             </Form.Label>
           </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label>
-              Topic:
-              <Form.Control
-                type="text"
-                name="topic"
-                size="40"
-                value={topic}
-                onChange={(e) => setTopic(e.target.value)}
-              />
-            </Form.Label>
-          </Form.Group>
+          <label>
+            Genre:
+            <select
+              name="category"
+              value={topic}
+              onChange={(e) => setTopic(e.target.value)}
+            >
+              <option value="tech">tech</option>
+              <option value="lifestyle">lifestyle</option>
+              <option value="entertainment">entertainment</option>
+              <option value="pets">pets</option>
+              <option value="miscellaneous">miscellaneous</option>
+            </select>
+          </label>
           <Form.Group className="mb-3">
             <Form.Label>
               Content:
