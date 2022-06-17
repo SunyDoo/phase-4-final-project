@@ -48,7 +48,7 @@ function BlogForm({ currentUser, onAddBlog }) {
             </Form.Label>
           </Form.Group>
           <label>
-            Genre:
+            Topic:
             <select
               name="category"
               value={topic}
