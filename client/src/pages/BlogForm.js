@@ -29,6 +29,7 @@ function BlogForm({ currentUser, onAddBlog }) {
     setTitle("");
     setTopic("");
     setContent("");
+    // console.log(blogData);
   }
 
   return (
@@ -50,7 +51,7 @@ function BlogForm({ currentUser, onAddBlog }) {
           <label>
             Topic:
             <select
-              name="category"
+              name="topic"
               value={topic}
               onChange={(e) => setTopic(e.target.value)}
             >

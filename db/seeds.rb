@@ -1,7 +1,7 @@
 User.destroy_all
 Blog.destroy_all
 Comment.destroy_all
-# Comment.destroy_all
+
 
 puts "🌱 Seeding spices..."
 

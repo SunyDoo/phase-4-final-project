@@ -43,15 +43,20 @@ function EditBlog({ blog, onUpdateBlog, currentUser, handleDelete }) {
             onChange={(e) => setTitle(e.target.value)}
           />
         </Form.Group>
-        <Form.Group className="mb-3">
-          <input
-            type="text"
+        <label>
+          Topic:
+          <select
             name="topic"
-            autoComplete="off"
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
-          />
-        </Form.Group>
+          >
+            <option value="tech">tech</option>
+            <option value="lifestyle">lifestyle</option>
+            <option value="entertainment">entertainment</option>
+            <option value="pets">pets</option>
+            <option value="miscellaneous">miscellaneous</option>
+          </select>
+        </label>
         <br></br>
         <Form.Group className="mb-3">
           <textarea
