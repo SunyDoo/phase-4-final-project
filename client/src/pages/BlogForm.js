@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 
 function BlogForm({ currentUser, onAddBlog }) {
   const [title, setTitle] = useState("");
-  const [topic, setTopic] = useState("");
+  const [topic, setTopic] = useState("tech");
   const [content, setContent] = useState("");
 
   function handleSubmit(e) {
@@ -29,7 +29,7 @@ function BlogForm({ currentUser, onAddBlog }) {
     setTitle("");
     setTopic("");
     setContent("");
-    // console.log(blogData);
+    console.log(blogData);
   }
 
   return (
