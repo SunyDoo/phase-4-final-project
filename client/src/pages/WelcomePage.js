@@ -6,20 +6,9 @@ import CardGroup from "react-bootstrap/CardGroup";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
 
-function WelcomePage({
-  currentUser,
-  setCurrentUser,
-  updateBlog,
-  deleteBlog
-}) {
+function WelcomePage({ currentUser, setCurrentUser, updateBlog, deleteBlog }) {
   const [editBlog, setEditBlog] = useState(false);
   const [content, setContent] = useState(currentUser.blogs);
-
-  // useEffect(() => {
-  //   fetch(`http://localhost:3000/users/${currentUser.id}`)
-  //     .then((res) => res.json())
-  //     .then((user) => setContent(currentUser.blogs));
-  // }, []);
 
   function handleLogoutClick() {
     fetch("/logout", { method: "DELETE" }).then((res) => {
@@ -28,12 +17,6 @@ function WelcomePage({
       }
     });
   }
-  // const blogsToDisplay = posts.filter((blog) => {
-  //   return blog.user.id === currentUser.id;
-  // });
-  // // setContent(blogsToDisplay);
-  console.log(content);
-  console.log(currentUser)
 
   function handleUpdateBlog(updatedBlog) {
     const updatedBlogs = content.map((blog) => {

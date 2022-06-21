@@ -45,6 +45,9 @@ function App() {
   function handleDelete(deletedBlog) {
     const updatedBlogs = blogs.filter((blog) => blog.id !== deletedBlog.id);
     setBlogs(updatedBlogs);
+    const updatedUser = currentUser;
+    updatedUser.blogs.filter((blog) => blog.id !== deletedBlog.id);
+    setCurrentUser(updatedUser);
   }
 
   function handleAddBlog(newBlog) {
