@@ -7,8 +7,8 @@ import Modal from "react-bootstrap/Modal";
 
 function BlogPage({ blog, currentUser }) {
   const [commentForm, setCommentForm] = useState(false);
-  const [comments, setComments] = useState(blog.comments);
   const [post, setPost] = useState(blog);
+  const [comments, setComments] = useState(post.comments);
 
   useEffect(() => {
     let id = window.location.pathname.split("/")[2];
@@ -28,7 +28,7 @@ function BlogPage({ blog, currentUser }) {
   }
 
   function handleUpdateComment(updatedComment) {
-    const updatedComments = comments.map((comment) => {
+    const updatedComments = post.comments.map((comment) => {
       if (comment.id === updatedComment.id) {
         return updatedComment;
       } else {
