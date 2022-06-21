@@ -11,6 +11,7 @@ class BlogsController < ApplicationController
 
   # GET /blogs/1
   def show
+    @blog = Blog.find(params[:id])
     render json: @blog
   end
 
@@ -21,7 +22,7 @@ class BlogsController < ApplicationController
     if @blog.save
       render json: @blog, status: :created, location: @blog
     else
-      render json: @blog.errors, status: :unprocessable_entity
+      render json: { errors: @blog.errors.full_messages }, status: :unprocessable_entity
     end
   end
 

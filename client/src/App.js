@@ -12,8 +12,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   const [blogs, setBlogs] = useState([]);
   const [selectedBlog, setSelectedBlog] = useState([]);
-  const [currentUser, setCurrentUser] = useState("");
-  // console.log(currentUser);
+  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
     fetch("http://localhost:3000/blogs")
@@ -50,6 +49,9 @@ function App() {
 
   function handleAddBlog(newBlog) {
     setBlogs((blogs) => [...blogs, newBlog]);
+    const updatedUser = currentUser;
+    updatedUser.blogs.push(newBlog);
+    setCurrentUser(updatedUser);
   }
 
   function addViewCount(blog) {
@@ -87,16 +89,17 @@ function App() {
             setCurrentUser={setCurrentUser}
             updateBlog={updateBlog}
             deleteBlog={handleDelete}
+            posts={blogs}
           />
         </Route>
         <Route exact path="/blogs">
           <Blogs
             blogs={blogs}
-            selectedBlog={setSelectedBlog}
+            setSelectedBlog={setSelectedBlog}
             addViewCount={addViewCount}
           />
         </Route>
-        <Route exact path={`/blogs/${selectedBlog.id}`}>
+        <Route exact path={`/blogs/:id`}>
           <BlogPage blog={selectedBlog} currentUser={currentUser} />
         </Route>
         <Route exact path="/createpost">

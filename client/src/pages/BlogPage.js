@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import CommentCard from "../components/CommentCard";
 import CommentForm from "../components/CommentForm";
@@ -8,6 +8,16 @@ import Modal from "react-bootstrap/Modal";
 function BlogPage({ blog, currentUser }) {
   const [commentForm, setCommentForm] = useState(false);
   const [comments, setComments] = useState(blog.comments);
+  const [post, setPost] = useState(blog);
+
+  useEffect(() => {
+    let id = window.location.pathname.split("/")[2];
+    if (id) {
+      fetch(`http://localhost:3000/blogs/${id}`)
+        .then((res) => res.json())
+        .then((blog) => setPost(blog));
+    }
+  }, []);
 
   function handleClick() {
     setCommentForm((commentForm) => !commentForm);
@@ -31,12 +41,12 @@ function BlogPage({ blog, currentUser }) {
   return (
     <Modal.Dialog>
       <Modal.Title>
-        <h1>{blog.title}</h1>
-        <h3>{blog.topic}</h3>
-        <h4>Author: {blog.user.username}</h4>
+        <h1>{post.title}</h1>
+        <h3>{post.topic}</h3>
+        <h4>Author: {post.user && post.user.username}</h4>
       </Modal.Title>
       <Modal.Body>
-        <p>{blog.content}</p>
+        <p>{post.content}</p>
       </Modal.Body>
       <br></br>
       <Modal.Footer
@@ -52,18 +62,19 @@ function BlogPage({ blog, currentUser }) {
       </Modal.Footer>
       {commentForm ? (
         <CommentForm
-          blog={blog}
+          blog={post}
           currentUser={currentUser}
           onAddComment={handleAddComment}
         />
       ) : null}
-      {comments.map((comment) => (
-        <CommentCard
-          key={comment.id}
-          comment={comment}
-          updateComment={handleUpdateComment}
-        />
-      ))}
+      {comments &&
+        comments.map((comment) => (
+          <CommentCard
+            key={comment.id}
+            comment={comment}
+            updateComment={handleUpdateComment}
+          />
+        ))}
       <NavLink to={"/blogs"}>
         <p>Return to Blogs</p>
       </NavLink>

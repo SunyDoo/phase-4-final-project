@@ -1,7 +1,7 @@
 import React from "react";
 import BlogCard from "./BlogCard";
 
-function Blogs({ blogs, selectedBlog, addViewCount }) {
+function Blogs({ blogs, setSelectedBlog, addViewCount }) {
   return (
     <>
       <div
@@ -17,7 +17,7 @@ function Blogs({ blogs, selectedBlog, addViewCount }) {
           <BlogCard
             key={blog.id}
             blog={blog}
-            selectedBlog={selectedBlog}
+            setSelectedBlog={setSelectedBlog}
             addViewCount={addViewCount}
           />
         ))}

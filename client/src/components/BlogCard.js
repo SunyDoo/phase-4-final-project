@@ -2,9 +2,9 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { Container, Card } from "react-bootstrap";
 
-function BlogCard({ blog, selectedBlog, addViewCount }) {
+function BlogCard({ blog, setSelectedBlog, addViewCount }) {
   function handleClick() {
-    selectedBlog(blog);
+    setSelectedBlog(blog);
     addViewCount(blog);
   }
 

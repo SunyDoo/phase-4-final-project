@@ -34,7 +34,6 @@ function BlogForm({ currentUser, onAddBlog }) {
     setTitle("");
     setTopic("");
     setContent("");
-    console.log(blogData);
   }
 
   return (
