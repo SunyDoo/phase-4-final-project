@@ -18,8 +18,12 @@ class CommentsController < ApplicationController
 
   # POST /comments
   def create
-    comment = Comment.create!(comment_params)
-    render json: comment, status: :created
+    comment = Comment.create(comment_params)
+      if comment.valid?
+        render json: comment, status: :created
+      else 
+        render json: { errors: comment.errors.full_messages }, status: :unprocessable_entity
+      end
   end
 
   # PATCH/PUT /comments/1

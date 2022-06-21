@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 
 function CommentForm({ blog, currentUser, onAddComment }) {
   const [content, setContent] = useState("");
+  const [errors, setErrors] = useState([]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -19,10 +20,14 @@ function CommentForm({ blog, currentUser, onAddComment }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(commentData),
-    })
-      .then((r) => r.json())
-      .then((newComment) => onAddComment(newComment));
-    setContent("");
+    }).then((r) => {
+      if (r.ok) {
+        r.json().then((newComment) => onAddComment(newComment));
+      } else {
+        r.json().then((err) => setErrors(err.errors));
+      }
+      setContent("");
+    });
   }
 
   return (
@@ -38,6 +43,7 @@ function CommentForm({ blog, currentUser, onAddComment }) {
               onChange={(e) => setContent(e.target.value)}
             />
           </label>
+          {errors ? errors.map((err) => <p key={err}>{err}</p>) : null}
           <Button type="submit">Leave Comment</Button>
         </form>
       </div>

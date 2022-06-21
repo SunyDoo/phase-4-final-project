@@ -13,4 +13,8 @@ class Blog < ApplicationRecord
     self.commented_users.uniq
   end
 
+  def most_comments
+    
+  end
+
 end

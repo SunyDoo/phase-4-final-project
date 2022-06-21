@@ -6,6 +6,7 @@ function BlogForm({ currentUser, onAddBlog }) {
   const [title, setTitle] = useState("");
   const [topic, setTopic] = useState("tech");
   const [content, setContent] = useState("");
+  const [errors, setErrors] = useState([]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -23,9 +24,13 @@ function BlogForm({ currentUser, onAddBlog }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(blogData),
-    })
-      .then((r) => r.json())
-      .then((blogData) => onAddBlog(blogData));
+    }).then((res) => {
+      if (res.ok) {
+        res.json().then((blogData) => onAddBlog(blogData));
+      } else {
+        res.json().then((err) => setErrors(err.errors));
+      }
+    });
     setTitle("");
     setTopic("");
     setContent("");
@@ -76,6 +81,7 @@ function BlogForm({ currentUser, onAddBlog }) {
           </Form.Group>
           <Button type="submit">Make Post</Button>
         </Form>
+        {errors ? errors.map((err) => <p key={err}>{err}</p>) : null}
       </div>
     </>
   );
