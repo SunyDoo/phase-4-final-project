@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import CommentCard from "../components/CommentCard";
 import CommentForm from "../components/CommentForm";
@@ -7,7 +7,20 @@ import Modal from "react-bootstrap/Modal";
 
 function BlogPage({ selectedBlog, currentUser, setSelectedBlog }) {
   const [commentForm, setCommentForm] = useState(false);
+  const [blog, setBlog] = useState(selectedBlog);
   const [comments, setComments] = useState(selectedBlog.comments);
+
+  useEffect(() => {
+    let id = window.location.pathname.split("/")[2];
+    if (id) {
+      fetch(`http://localhost:3000/blogs/${id}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setBlog(data);
+          setComments(data.comments);
+        });
+    }
+  }, []);
 
   function handleClick() {
     setCommentForm((commentForm) => !commentForm);
@@ -15,7 +28,6 @@ function BlogPage({ selectedBlog, currentUser, setSelectedBlog }) {
 
   function handleAddComment(newComment) {
     setComments((comments) => [...comments, newComment]);
-    setSelectedBlog(newComment.blog);
   }
 
   function handleUpdateComment(updatedComment) {
@@ -32,12 +44,12 @@ function BlogPage({ selectedBlog, currentUser, setSelectedBlog }) {
   return (
     <Modal.Dialog>
       <Modal.Title>
-        <h1>{selectedBlog.title}</h1>
-        <h3>{selectedBlog.topic}</h3>
-        <h4>Author: {selectedBlog.user && selectedBlog.user.username}</h4>
+        <h1>{blog.title}</h1>
+        <h3>{blog.topic}</h3>
+        <h4>Author: {blog.user && blog.user.username}</h4>
       </Modal.Title>
       <Modal.Body>
-        <p>{selectedBlog.content}</p>
+        <p>{blog.content}</p>
       </Modal.Body>
       <br></br>
       <Modal.Footer
@@ -53,7 +65,7 @@ function BlogPage({ selectedBlog, currentUser, setSelectedBlog }) {
       </Modal.Footer>
       {commentForm ? (
         <CommentForm
-          blog={selectedBlog}
+          blog={blog}
           currentUser={currentUser}
           onAddComment={handleAddComment}
         />

@@ -1,13 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import CardGroup from "react-bootstrap/CardGroup";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
 import BlogEditor from "../components/BlogEditor";
 
-function WelcomePage({ currentUser, setCurrentUser, updateBlog, deleteBlog }) {
-  // const [editBlog, setEditBlog] = useState(false);
-  const [content, setContent] = useState(currentUser.blogs);
+function WelcomePage({
+  currentUser,
+  setCurrentUser,
+  updateBlog,
+  deleteBlog,
+  blogs,
+}) {
+  const [content, setContent] = useState(
+    blogs.filter((blog) => blog.user.id === currentUser.id)
+  );
+  useEffect(() => {
+    setContent(blogs.filter((blog) => blog.user.id === currentUser.id));
+  }, [blogs, currentUser]);
 
   function handleLogoutClick() {
     fetch("/logout", { method: "DELETE" }).then((res) => {
@@ -16,25 +26,6 @@ function WelcomePage({ currentUser, setCurrentUser, updateBlog, deleteBlog }) {
       }
     });
   }
-
-  // function handleUpdateBlog(updatedBlog) {
-  //   const updatedBlogs = content.map((blog) => {
-  //     if (blog.id === updatedBlog.id) {
-  //       return updatedBlog;
-  //     } else {
-  //       return blog;
-  //     }
-  //   });
-  //   setContent(updatedBlogs);
-  //   setEditBlog(false);
-  //   updateBlog(updatedBlog);
-  // }
-
-  // function handleDelete(deletedBlog) {
-  //   const updatedBlogs = content.filter((blog) => blog.id !== deletedBlog.id);
-  //   setContent(updatedBlogs);
-  //   deleteBlog(deletedBlog);
-  // }
 
   return (
     <div>
@@ -55,9 +46,6 @@ function WelcomePage({ currentUser, setCurrentUser, updateBlog, deleteBlog }) {
         </Button>
         <br></br>
         <h3>Your Content</h3>
-        {/* <Button onClick={() => setEditBlog((editBlog) => !editBlog)} size="sm">
-          {!editBlog ? "Edit Content" : "Close Edit Page"}
-        </Button> */}
       </div>
       <Container>
         <CardGroup

@@ -44,11 +44,13 @@ function App() {
 
   function handleDelete(deletedBlog) {
     const updatedBlogs = blogs.filter((blog) => blog.id !== deletedBlog.id);
+    console.log(deletedBlog)
     setBlogs(updatedBlogs);
     const updatedUser = currentUser;
     updatedUser.blogs.filter((blog) => blog.id !== deletedBlog.id);
     setCurrentUser(updatedUser);
   }
+
 
   function handleAddBlog(newBlog) {
     setBlogs((blogs) => [...blogs, newBlog]);
@@ -92,7 +94,7 @@ function App() {
             setCurrentUser={setCurrentUser}
             updateBlog={updateBlog}
             deleteBlog={handleDelete}
-            posts={blogs}
+            blogs={blogs}
           />
         </Route>
         <Route exact path="/blogs">
