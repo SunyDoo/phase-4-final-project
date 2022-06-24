@@ -12,7 +12,6 @@ function BlogEditor({
   content,
 }) {
   const [editBlog, setEditBlog] = useState(false);
-  //   const [content, setContent] = useState(currentUser.blogs);
 
   function handleUpdateBlog(updatedBlog) {
     const updatedBlogs = content.map((blog) => {

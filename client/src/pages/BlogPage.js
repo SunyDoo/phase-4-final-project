@@ -7,17 +7,7 @@ import Modal from "react-bootstrap/Modal";
 
 function BlogPage({ selectedBlog, currentUser, setSelectedBlog }) {
   const [commentForm, setCommentForm] = useState(false);
-  // const [blog, setBlog] = useState(selectedBlog);
   const [comments, setComments] = useState(selectedBlog.comments);
-
-  // useEffect(() => {
-  //   let id = window.location.pathname.split("/")[2];
-  //   if (id) {
-  //     fetch(`http://localhost:3000/blogs/${id}`)
-  //       .then((res) => res.json())
-  //       .then((data) => setBlog(data));
-  //   }
-  // }, []);
 
   function handleClick() {
     setCommentForm((commentForm) => !commentForm);
@@ -25,6 +15,7 @@ function BlogPage({ selectedBlog, currentUser, setSelectedBlog }) {
 
   function handleAddComment(newComment) {
     setComments((comments) => [...comments, newComment]);
+    setSelectedBlog(newComment.blog);
   }
 
   function handleUpdateComment(updatedComment) {
