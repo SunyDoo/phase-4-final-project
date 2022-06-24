@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import EditBlog from "../components/EditBlog";
 import Container from "react-bootstrap/Container";
-import Card from "react-bootstrap/Card";
 import CardGroup from "react-bootstrap/CardGroup";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
+import BlogEditor from "../components/BlogEditor";
 
 function WelcomePage({ currentUser, setCurrentUser, updateBlog, deleteBlog }) {
-  const [editBlog, setEditBlog] = useState(false);
+  // const [editBlog, setEditBlog] = useState(false);
   const [content, setContent] = useState(currentUser.blogs);
 
   function handleLogoutClick() {
@@ -18,24 +17,24 @@ function WelcomePage({ currentUser, setCurrentUser, updateBlog, deleteBlog }) {
     });
   }
 
-  function handleUpdateBlog(updatedBlog) {
-    const updatedBlogs = content.map((blog) => {
-      if (blog.id === updatedBlog.id) {
-        return updatedBlog;
-      } else {
-        return blog;
-      }
-    });
-    setContent(updatedBlogs);
-    setEditBlog(false);
-    updateBlog(updatedBlog);
-  }
+  // function handleUpdateBlog(updatedBlog) {
+  //   const updatedBlogs = content.map((blog) => {
+  //     if (blog.id === updatedBlog.id) {
+  //       return updatedBlog;
+  //     } else {
+  //       return blog;
+  //     }
+  //   });
+  //   setContent(updatedBlogs);
+  //   setEditBlog(false);
+  //   updateBlog(updatedBlog);
+  // }
 
-  function handleDelete(deletedBlog) {
-    const updatedBlogs = content.filter((blog) => blog.id !== deletedBlog.id);
-    setContent(updatedBlogs);
-    deleteBlog(deletedBlog);
-  }
+  // function handleDelete(deletedBlog) {
+  //   const updatedBlogs = content.filter((blog) => blog.id !== deletedBlog.id);
+  //   setContent(updatedBlogs);
+  //   deleteBlog(deletedBlog);
+  // }
 
   return (
     <div>
@@ -56,9 +55,9 @@ function WelcomePage({ currentUser, setCurrentUser, updateBlog, deleteBlog }) {
         </Button>
         <br></br>
         <h3>Your Content</h3>
-        <Button onClick={() => setEditBlog((editBlog) => !editBlog)} size="sm">
+        {/* <Button onClick={() => setEditBlog((editBlog) => !editBlog)} size="sm">
           {!editBlog ? "Edit Content" : "Close Edit Page"}
-        </Button>
+        </Button> */}
       </div>
       <Container>
         <CardGroup
@@ -71,27 +70,15 @@ function WelcomePage({ currentUser, setCurrentUser, updateBlog, deleteBlog }) {
           }}
         >
           {content.map((blog) => (
-            <div key={blog.id}>
-              <Card style={{ height: "5rem" }} bg="light" border="dark">
-                <Card.Body>
-                  <Card.Title>{blog.title}</Card.Title>
-                  <Card.Subtitle className="mb-2 text-muted">
-                    {blog.topic}
-                  </Card.Subtitle>
-                </Card.Body>
-              </Card>
-              <Card.Footer>
-                <small className="text-muted">Total Views: {blog.views}</small>
-              </Card.Footer>
-              {editBlog ? (
-                <EditBlog
-                  blog={blog}
-                  currentUser={currentUser}
-                  onUpdateBlog={handleUpdateBlog}
-                  handleDelete={handleDelete}
-                />
-              ) : null}
-            </div>
+            <BlogEditor
+              key={blog.id}
+              blog={blog}
+              currentUser={currentUser}
+              updateBlog={updateBlog}
+              deleteBlog={deleteBlog}
+              setContent={setContent}
+              content={content}
+            />
           ))}
         </CardGroup>
       </Container>

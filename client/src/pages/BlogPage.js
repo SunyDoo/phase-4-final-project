@@ -25,7 +25,6 @@ function BlogPage({ selectedBlog, currentUser, setSelectedBlog }) {
 
   function handleAddComment(newComment) {
     setComments((comments) => [...comments, newComment]);
-    setSelectedBlog(newComment.blog);
   }
 
   function handleUpdateComment(updatedComment) {
