@@ -1,23 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import CommentCard from "../components/CommentCard";
 import CommentForm from "../components/CommentForm";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-function BlogPage({ blog, currentUser }) {
+function BlogPage({ selectedBlog, currentUser, setSelectedBlog }) {
   const [commentForm, setCommentForm] = useState(false);
-  const [post, setPost] = useState(blog);
-  const [comments, setComments] = useState(post.comments);
+  // const [blog, setBlog] = useState(selectedBlog);
+  const [comments, setComments] = useState(selectedBlog.comments);
 
-  useEffect(() => {
-    let id = window.location.pathname.split("/")[2];
-    if (id) {
-      fetch(`http://localhost:3000/blogs/${id}`)
-        .then((res) => res.json())
-        .then((blog) => setPost(blog));
-    }
-  }, []);
+  // useEffect(() => {
+  //   let id = window.location.pathname.split("/")[2];
+  //   if (id) {
+  //     fetch(`http://localhost:3000/blogs/${id}`)
+  //       .then((res) => res.json())
+  //       .then((data) => setBlog(data));
+  //   }
+  // }, []);
 
   function handleClick() {
     setCommentForm((commentForm) => !commentForm);
@@ -25,10 +25,11 @@ function BlogPage({ blog, currentUser }) {
 
   function handleAddComment(newComment) {
     setComments((comments) => [...comments, newComment]);
+    setSelectedBlog(newComment.blog);
   }
 
   function handleUpdateComment(updatedComment) {
-    const updatedComments = post.comments.map((comment) => {
+    const updatedComments = comments.map((comment) => {
       if (comment.id === updatedComment.id) {
         return updatedComment;
       } else {
@@ -41,12 +42,12 @@ function BlogPage({ blog, currentUser }) {
   return (
     <Modal.Dialog>
       <Modal.Title>
-        <h1>{post.title}</h1>
-        <h3>{post.topic}</h3>
-        <h4>Author: {post.user && post.user.username}</h4>
+        <h1>{selectedBlog.title}</h1>
+        <h3>{selectedBlog.topic}</h3>
+        <h4>Author: {selectedBlog.user && selectedBlog.user.username}</h4>
       </Modal.Title>
       <Modal.Body>
-        <p>{post.content}</p>
+        <p>{selectedBlog.content}</p>
       </Modal.Body>
       <br></br>
       <Modal.Footer
@@ -62,7 +63,7 @@ function BlogPage({ blog, currentUser }) {
       </Modal.Footer>
       {commentForm ? (
         <CommentForm
-          blog={post}
+          blog={selectedBlog}
           currentUser={currentUser}
           onAddComment={handleAddComment}
         />

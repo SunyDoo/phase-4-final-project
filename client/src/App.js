@@ -103,7 +103,7 @@ function App() {
           />
         </Route>
         <Route exact path={`/blogs/:id`}>
-          <BlogPage blog={selectedBlog} currentUser={currentUser} />
+          <BlogPage selectedBlog={selectedBlog} currentUser={currentUser} setSelectedBlog={setSelectedBlog} />
         </Route>
         <Route exact path="/createpost">
           <BlogForm currentUser={currentUser} onAddBlog={handleAddBlog} />
