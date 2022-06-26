@@ -39,7 +39,6 @@ function WelcomePage({
     return false;
   });
 
-  console.log(uniqueBlogs);
 
   return (
     <div>
@@ -87,7 +86,7 @@ function WelcomePage({
       <div>
         <p>Blogs you've commented on:</p>
         {uniqueBlogs.map((blog) => (
-          <li>{blog.title}</li>
+          <li key={blog.id}>{blog.title}</li>
         ))}
       </div>
     </div>
