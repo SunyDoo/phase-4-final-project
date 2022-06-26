@@ -9,12 +9,9 @@ class Blog < ApplicationRecord
   validates_presence_of :title, :topic, :content
 
   #Methods
-  def uniq_commentors
-    self.commented_users.uniq
-  end
+  # def uniq_commentors
+  #   self.commented_users.uniq
+  # end
 
-  def most_comments
-    
-  end
 
 end
