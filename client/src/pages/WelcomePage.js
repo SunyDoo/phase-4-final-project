@@ -26,6 +26,20 @@ function WelcomePage({
       }
     });
   }
+  const commentedBlogs = [];
+  const uniqueBlogs = currentUser.commented_blogs.filter((blog) => {
+    const isDuplicate = commentedBlogs.includes(blog.id);
+
+    if (!isDuplicate) {
+      commentedBlogs.push(blog.id);
+
+      return true;
+    }
+
+    return false;
+  });
+
+  console.log(uniqueBlogs);
 
   return (
     <div>
@@ -70,6 +84,12 @@ function WelcomePage({
           ))}
         </CardGroup>
       </Container>
+      <div>
+        <p>Blogs you've commented on:</p>
+        {uniqueBlogs.map((blog) => (
+          <li>{blog.title}</li>
+        ))}
+      </div>
     </div>
   );
 }
