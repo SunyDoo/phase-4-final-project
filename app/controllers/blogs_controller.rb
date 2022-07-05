@@ -9,10 +9,10 @@ class BlogsController < ApplicationController
     render json: blogs
   end
 
-  def order
-    blogs=Blog.all
-    render json: blogs.order(views: :desc)
-  end
+  # def order
+  #   blogs=Blog.all
+  #   render json: blogs.order(views: :desc)
+  # end
 
   # GET /blogs/1
   def show
