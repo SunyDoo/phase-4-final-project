@@ -14,7 +14,7 @@ function CommentForm({ blog, currentUser, onAddComment }) {
       likes: 0,
       dislikes: 0,
     };
-    fetch("http://localhost:3000/comments", {
+    fetch("/comments", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

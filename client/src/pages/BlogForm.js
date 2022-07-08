@@ -18,7 +18,7 @@ function BlogForm({ currentUser, onAddBlog }) {
       user_id: currentUser.id,
       views: 0,
     };
-    fetch("http://localhost:3000/blogs", {
+    fetch("/blogs", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

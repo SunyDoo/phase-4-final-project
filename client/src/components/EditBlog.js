@@ -9,7 +9,7 @@ function EditBlog({ blog, onUpdateBlog, currentUser, handleDelete }) {
 
   function handleFormSubmit(e) {
     e.preventDefault();
-    fetch(`http://localhost:3000/blogs/${blog.id}`, {
+    fetch(`/blogs/${blog.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +26,7 @@ function EditBlog({ blog, onUpdateBlog, currentUser, handleDelete }) {
   }
 
   function handleDeleteClick() {
-    fetch(`http://localhost:3000/blogs/${blog.id}`, {
+    fetch(`/blogs/${blog.id}`, {
       method: "DELETE",
     }).then(() => handleDelete(blog));
   }

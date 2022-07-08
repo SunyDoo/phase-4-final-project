@@ -13,7 +13,7 @@ function BlogPage({ selectedBlog, currentUser, setSelectedBlog }) {
   useEffect(() => {
     let id = window.location.pathname.split("/")[2];
     if (id) {
-      fetch(`http://localhost:3000/blogs/${id}`)
+      fetch(`/blogs/${id}`)
         .then((res) => res.json())
         .then((data) => {
           setBlog(data);
