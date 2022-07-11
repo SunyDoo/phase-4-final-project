@@ -1,10 +1,11 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
+import { config } from "../Constants";
 
 function CommentCard({ comment, updateComment }) {
   function addLike(e) {
     e.preventDefault();
-    fetch(`/comments/${comment.id}`, {
+    fetch(`${config.url}/comments/${comment.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -19,7 +20,7 @@ function CommentCard({ comment, updateComment }) {
 
   function addDislike(e) {
     e.preventDefault();
-    fetch(`/comments/${comment.id}`, {
+    fetch(`${config.url}/comments/${comment.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

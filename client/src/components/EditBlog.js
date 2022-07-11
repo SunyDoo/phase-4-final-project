@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { config } from "../Constants";
 
 function EditBlog({ blog, onUpdateBlog, currentUser, handleDelete }) {
   const [title, setTitle] = useState(blog.title);
@@ -9,7 +10,7 @@ function EditBlog({ blog, onUpdateBlog, currentUser, handleDelete }) {
 
   function handleFormSubmit(e) {
     e.preventDefault();
-    fetch(`/blogs/${blog.id}`, {
+    fetch(`${config.url}/blogs/${blog.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +27,7 @@ function EditBlog({ blog, onUpdateBlog, currentUser, handleDelete }) {
   }
 
   function handleDeleteClick() {
-    fetch(`/blogs/${blog.id}`, {
+    fetch(`${config.url}/blogs/${blog.id}`, {
       method: "DELETE",
     }).then(() => handleDelete(blog));
   }

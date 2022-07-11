@@ -4,8 +4,9 @@ import CommentCard from "../components/CommentCard";
 import CommentForm from "../components/CommentForm";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { config } from "../Constants";
 
-function BlogPage({ selectedBlog, currentUser, setSelectedBlog }) {
+function BlogPage({ selectedBlog, currentUser, setSelectedBlog, url }) {
   const [commentForm, setCommentForm] = useState(false);
   const [blog, setBlog] = useState(selectedBlog);
   const [comments, setComments] = useState(selectedBlog.comments);
@@ -13,7 +14,7 @@ function BlogPage({ selectedBlog, currentUser, setSelectedBlog }) {
   useEffect(() => {
     let id = window.location.pathname.split("/")[2];
     if (id) {
-      fetch(`/blogs/${id}`)
+      fetch(`${config.url}/blogs/${id}`)
         .then((res) => res.json())
         .then((data) => {
           setBlog(data);

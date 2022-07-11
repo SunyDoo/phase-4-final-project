@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { config } from "../Constants";
 
-function BlogForm({ currentUser, onAddBlog }) {
+function BlogForm({ currentUser, onAddBlog, url }) {
   const [title, setTitle] = useState("");
   const [topic, setTopic] = useState("tech");
   const [content, setContent] = useState("");
@@ -18,7 +19,7 @@ function BlogForm({ currentUser, onAddBlog }) {
       user_id: currentUser.id,
       views: 0,
     };
-    fetch("/blogs", {
+    fetch(`${config.url}/blogs`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

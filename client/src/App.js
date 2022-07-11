@@ -8,6 +8,7 @@ import BlogPage from "./pages/BlogPage";
 import WelcomePage from "./pages/WelcomePage";
 import BlogForm from "./pages/BlogForm";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { config } from "./Constants";
 
 function App() {
   const [blogs, setBlogs] = useState([]);
@@ -15,7 +16,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/blogs")
+    fetch(`${config.url}/blogs`)
       .then((res) => res.json())
       .then((blogs) => setBlogs(blogs));
   }, []);
@@ -44,13 +45,12 @@ function App() {
 
   function handleDelete(deletedBlog) {
     const updatedBlogs = blogs.filter((blog) => blog.id !== deletedBlog.id);
-    console.log(deletedBlog)
+    console.log(deletedBlog);
     setBlogs(updatedBlogs);
     const updatedUser = currentUser;
     updatedUser.blogs.filter((blog) => blog.id !== deletedBlog.id);
     setCurrentUser(updatedUser);
   }
-
 
   function handleAddBlog(newBlog) {
     setBlogs((blogs) => [...blogs, newBlog]);
@@ -60,7 +60,7 @@ function App() {
   }
 
   function addViewCount(blog) {
-    fetch(`http://localhost:3000/blogs/${blog.id}`, {
+    fetch(`${config.url}/blogs/${blog.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -105,10 +105,19 @@ function App() {
           />
         </Route>
         <Route exact path={`/blogs/:id`}>
-          <BlogPage selectedBlog={selectedBlog} currentUser={currentUser} setSelectedBlog={setSelectedBlog} />
+          <BlogPage
+            selectedBlog={selectedBlog}
+            currentUser={currentUser}
+            setSelectedBlog={setSelectedBlog}
+            url={URL}
+          />
         </Route>
         <Route exact path="/createpost">
-          <BlogForm currentUser={currentUser} onAddBlog={handleAddBlog} />
+          <BlogForm
+            currentUser={currentUser}
+            onAddBlog={handleAddBlog}
+            url={URL}
+          />
         </Route>
       </Switch>
     </div>
