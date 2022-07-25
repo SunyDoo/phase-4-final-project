@@ -79,7 +79,7 @@ function BlogPage({ selectedBlog, currentUser, setSelectedBlog, url }) {
             updateComment={handleUpdateComment}
           />
         ))}
-      <NavLink to={"/blogs"}>
+      <NavLink to={"/-blogs"}>
         <p>Return to Blogs</p>
       </NavLink>
     </Modal.Dialog>

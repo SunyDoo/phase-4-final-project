@@ -22,10 +22,10 @@ function NavBar() {
         <NavLink to="/" exact style={{ color: "white" }}>
           Home Page
         </NavLink>
-        <NavLink to="/blogs" exact style={{ color: "white" }}>
+        <NavLink to="/-blogs" exact style={{ color: "white" }}>
           Blogs
         </NavLink>
-        <NavLink to="/createpost" exact style={{ color: "white" }}>
+        <NavLink to="/-createpost" exact style={{ color: "white" }}>
           Create Post
         </NavLink>
       </Container>

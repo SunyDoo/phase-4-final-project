@@ -11,7 +11,7 @@ function BlogCard({ blog, setSelectedBlog, addViewCount }) {
   return (
     <Container>
       <Card style={{ width: "18rem" }} bg="light" border="dark">
-        <NavLink to={`/blogs/${blog.id}`} exact onClick={handleClick}>
+        <NavLink to={`/-blogs/${blog.id}`} exact onClick={handleClick}>
           <Card.Title>{blog.title}</Card.Title>
         </NavLink>
         <p>Posted by: {blog.user.username}</p>
